@@ -1,26 +1,18 @@
-import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 public class MainTest
 {
 
-    @Before
-    public void startMessage()
+    public int getLocalNumber()
     {
-
-    }
-
-    @After
-    public void endMessage()
-    {
-
+        return 14;
     }
 
     @Test
-    public void Test1() {
-
+    public void testGetLocalNumber()
+    {
+        Assert.assertTrue("Expected value is 14. Actual: " + this.getLocalNumber(), this.getLocalNumber() == 14);
     }
 
 }
