@@ -6,6 +6,6 @@ public class MainClassTest extends MainClass {
     @Test
     public void testGetClassNumber()
     {
-        Assert.assertTrue("", this.getClassNumber() > 45);
+        Assert.assertTrue("Expected value is > 45. Actual: " + this.getClassNumber(), this.getClassNumber() > 45);
     }
 }
