@@ -1,38 +1,42 @@
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.net.URL;
+
+
 public class FirstTest
 {
+    private AppiumDriver driver;
 
+    @Before
     public void setUp() throws Exception
     {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("deviceName", "");
-        capabilities.setCapability("platformVersion", "12");
+        capabilities.setCapability("platformVersion", "10");
         capabilities.setCapability("automationName", "Appium");
         capabilities.setCapability("appPackage", "org.wikipedia");
         capabilities.setCapability("appActivity", ".main.MainActivity");
-        capabilities.setCapability("app", "C:\\javaqa\\apk");
-    }
+        capabilities.setCapability("app", "C:\\javaqa\\apk\\wikipedia.apk");
 
-    @Before
-    public void startMessage()
-    {
-
+        driver = new AndroidDriver(new URL("http://127.0.01:4723/wd/hub"), capabilities);
     }
 
     @After
-    public void endMessage()
+    public void tearDown()
     {
-
+        driver.quit();
     }
 
     @Test
-    public void Test1() {
-
+    public void firstTest()
+    {
+        System.out.println("First test");
     }
 
 }
