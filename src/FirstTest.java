@@ -73,10 +73,11 @@ public class FirstTest
     @Test
     public void testSearchFieldContainsText1()
     {
-        By locator_1 = By.id("org.wikipedia:id/search_container");
-        By locator_2 = By.className("android.widget.TextView");
-        String expected_text = "Search Wikipedia";
-        boolean result = ElementInElementHasText(locator_1, locator_2, expected_text, "The input field doesn't contain the text: " + expected_text);
-        Assert.assertTrue(result);
+        String word_to_search = "reader";
+        By locator_search = By.id("");
+        By locator_clear_search = By.id("org.wikipedia:id/search_close_btn");
+        WebElement search = this.findElement(locator_search, "");
+        search.click();
+        search.sendKeys(word_to_search);
     };
 }
