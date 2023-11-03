@@ -68,20 +68,20 @@ public class FirstTest
         return wait.until(ExpectedConditions.presenceOfElementLocated(by1)).findElement(by2);
     };
 
-    public boolean ElementHasText(By by, String expected_text, String error_message) {
+    public boolean elementHasText(By by, String expected_text, String error_message) {
         WebElement el = this.findElement(by, "couldn't find an element");
         String el_text = el.getText();
         return el_text.contains(expected_text);
     };
 
-    public boolean ElementInElementHasText(By by1, By by2, String expected_text, String error_message) {
+    public boolean elementInElementHasText(By by1, By by2, String expected_text, String error_message) {
         WebElement el = this.findElementInElement(by1, by2,"couldn't find an element");
         String el_text = el.getText();
         return el_text.contains(expected_text);
     };
 
 
-    public void FindAndOpenArticle(String title)
+    public void findAndOpenArticle(String title)
     {
         By locator_search = By.id("org.wikipedia:id/search_container");
         By locator_search_result_items = By.id("org.wikipedia:id/page_list_item_title");
@@ -93,7 +93,7 @@ public class FirstTest
         search_results.get(0).click();
     }
 
-    public void SaveArticleToReadingList()
+    public void saveArticleToReadingList()
     {
         By locator_save = By.id("Save");
         By locator_save_to_list = By.id("org.wikipedia:id/snackbar_action");
@@ -107,7 +107,7 @@ public class FirstTest
         lists.get(0).click();
     }
 
-    public void RemoveArticleFromReadingList(String article_title, String list_title)
+    public void removeArticleFromReadingList(String article_title, String list_title)
     {
         By locator_list = By.xpath("//*[@text='" + list_title + "']");
         By locator_article = By.xpath("//*[@text='" + article_title + "']");
@@ -155,36 +155,17 @@ public class FirstTest
         saved.click();
     }
 
+    public boolean isTitlePresent(String title_s)
+    {
+        By locator_title = By.name(title_s);
+        WebElement title = driver.findElement(locator_title);
+        return true;
+    }
+
     @Test
-    public void test41() throws InterruptedException {
+    public void test42() throws InterruptedException {
         String text1 = "Plutonium";
-        String text2 = "Uranium";
-        String list_title = "List1";
-
-        //Find and save article 1
-        this.FindAndOpenArticle(text1);
-        this.SaveArticleToReadingList();
-
-        //Find and save article 2
-        this.goHome();
-        this.FindAndOpenArticle(text2);
-        this.SaveArticleToReadingList();
-
-        //Remove article 1
-        this.goHome();
-        this.goSaved();
-        this.RemoveArticleFromReadingList(text1, list_title);
-
-        //Check if article 2 remains = Open article 2
-        this.openSavedArticle(text2);
-
-        //Check if the article has a correct title
-        WebElement article_title = this.findElement(new MobileBy.ByAccessibilityId(text2), "");
-
-        //Remove article 2
-        this.goHome();
-        this.goSaved();
-        this.RemoveArticleFromReadingList(text2, list_title);
-
+        this.findAndOpenArticle(text1);
+        Assert.assertTrue(this.isTitlePresent(text1));
     };
 }
