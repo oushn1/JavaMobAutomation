@@ -4,7 +4,9 @@ import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
 import java.util.List;
+
 
 public class SearchPageObject extends MainPageObject {
 
@@ -35,12 +37,10 @@ public class SearchPageObject extends MainPageObject {
     }
 
     public List<WebElement> getSearchResults() {
-        List<WebElement> search_results;
+        List<WebElement> search_results = new ArrayList<WebElement>();
         try {
             search_results = this.findElements(locator_search_result_items, "No search results found");
-        } catch (Exception exception) {
-            search_results = null;
-        }
+        } catch (Exception ignored) {}
         return search_results;
     }
 

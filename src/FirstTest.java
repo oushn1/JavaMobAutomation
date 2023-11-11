@@ -33,16 +33,16 @@ public class FirstTest extends CoreTestCase {
         MainPageObject = new MainPageObject(driver);
         SearchPageObject = new SearchPageObject(driver);
         ArticlePageObject = new ArticlePageObject(driver);
+
+        this.beforeTests();
     }
 
-    @Before
     public void beforeTests()
     {
         WebElement skip_button = this.MainPageObject.findElement(By.id("org.wikipedia:id/fragment_onboarding_skip_button"), "");
         skip_button.click();
     }
 
-    @Test
     public void testSearch() throws InterruptedException {
         String word_to_search = "docker";
 
@@ -57,7 +57,6 @@ public class FirstTest extends CoreTestCase {
         Assert.assertTrue(search_results_cleared.isEmpty());
     }
 
-    @Test
     public void testSaveArticleToMyList() throws InterruptedException {
         String text1 = "Plutonium";
         String text2 = "Uranium";
@@ -89,7 +88,6 @@ public class FirstTest extends CoreTestCase {
         ArticlePageObject.removeArticleFromReadingList(text2, list_title);
     }
 
-    @Test
     public void testSearchNoWait() throws InterruptedException {
         String text1 = "Plutonium";
         SearchPageObject.findAndOpenArticle(text1);
