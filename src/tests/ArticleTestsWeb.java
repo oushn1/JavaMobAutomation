@@ -3,6 +3,7 @@ package tests;
 import io.appium.java_client.MobileBy;
 import lib.CoreTestCase;
 import lib.Platform;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -41,7 +42,8 @@ public class ArticleTestsWeb extends CoreTestCase {
         ArticlePageObjectWeb.openSavedArticle(text2);
 
         //Check if the article has a correct title
-        WebElement article_title = MainPageObject.findElement(new MobileBy.ByAccessibilityId(text2), "");
+        WebElement article_title = MainPageObject.findElement(By.className("mw-page-title-main"), "");
+        Assert.assertEquals(article_title.getText(), text2);
 
         //Remove article 2
         MainPageObject.goHome();

@@ -73,12 +73,12 @@ public class MainPageObject {
 
     public void goSaved()
     {
-        By locator_saved = By.xpath("//span[text()='Watchlist']");
-        By lcoator_menu = By.id("mw-mf-main-menu-button");
+        By locator_menu = By.xpath("//label[@for='main-menu-input']");
+        By locator_saved = By.xpath("//*[@data-event-name='menu.watchlist']");
 
-        WebElement menu = this.findElement(lcoator_menu, "Save button not found");
+        WebElement menu = this.findElement(locator_menu, "button not found");
         menu.click();
-        WebElement saved = this.findElement(locator_saved, "Save button not found");
+        WebElement saved = this.findElement(locator_saved, "button not found");
         saved.click();
     }
 }

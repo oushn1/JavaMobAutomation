@@ -10,6 +10,7 @@ import lib.ui.MainPageObject;
 import lib.ui.SearchPageObject;
 import lib.ui.SearchPageObjectWeb;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -38,6 +39,7 @@ public class CoreTestCase extends TestCase {
         ArticlePageObjectWeb = new ArticlePageObjectWeb(driver);
 
         this.openTestWebPage();
+        this.logIn();
         this.beforeTests();
     };
 
@@ -53,6 +55,30 @@ public class CoreTestCase extends TestCase {
         if(Platform.getInstance().isMW())
         {
             driver.get("http://en.m.wikipedia.org");
+        }
+    }
+
+    public void logIn()
+    {
+        if(Platform.getInstance().isMW()){
+            By locator_menu = By.xpath("//label[@for='main-menu-input']");
+            By locator_menu_login = By.id("p-personal");
+            By locator_user = By.id("wpName1");
+            By locator_password = By.id("wpPassword1");
+            By locator_ok = By.id("wpLoginAttempt");
+
+            WebElement menu = this.MainPageObject.findElement(locator_menu, "");
+            menu.click();
+            WebElement menu_login = this.MainPageObject.findElement(locator_menu_login, "");
+            menu_login.click();
+            WebElement user = this.MainPageObject.findElement(locator_user, "");
+            user.sendKeys("Garbuzovromang");
+            WebElement password = this.MainPageObject.findElement(locator_password, "");
+            password.sendKeys("1234");
+            WebElement ok = this.MainPageObject.findElement(locator_ok, "");
+            ok.click();
+
+            this.openTestWebPage();
         }
     }
 

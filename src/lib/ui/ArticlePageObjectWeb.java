@@ -44,7 +44,7 @@ public class ArticlePageObjectWeb extends MainPageObject{
 
     public void removeArticleFromReadingList(String article_title, String list_title)
     {
-        By locator_button = By.xpath("//button");
+        By locator_button = By.xpath("//a[@type='button']");
         WebElement remove_button = this.findElementInElement(getLocatorByTitle(article_title), locator_button, "");
         remove_button.click();
     }
