@@ -2,8 +2,10 @@ package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
+import lib.Platform;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
@@ -11,10 +13,10 @@ import java.util.List;
 
 public class MainPageObject {
 
-    protected AppiumDriver driver;
+    protected RemoteWebDriver driver;
     protected int timeout = 5;
 
-    public MainPageObject(AppiumDriver driver){
+    public MainPageObject(RemoteWebDriver driver){
         this.driver = driver;
     }
 
@@ -53,20 +55,29 @@ public class MainPageObject {
 
     public void goHome()
     {
-        By locator_options = By.id("org.wikipedia:id/page_toolbar_button_show_overflow_menu");
-        By locator_option_explore = By.id("org.wikipedia:id/page_explore");
+        if(Platform.getInstance().isAndroid())
+        {
+            By locator_options = By.id("org.wikipedia:id/page_toolbar_button_show_overflow_menu");
+            By locator_option_explore = By.id("org.wikipedia:id/page_explore");
 
-        WebElement options = this.findElement(locator_options, "");
-        options.click();
-        WebElement explore = this.findElement(locator_option_explore, "");
-        explore.click();
+            WebElement options = this.findElement(locator_options, "");
+            options.click();
+            WebElement explore = this.findElement(locator_option_explore, "");
+            explore.click();
+        }
 
+        if (Platform.getInstance().isMW()){
+                driver.get("http://en.m.wikipedia.org");
+            }
     }
 
     public void goSaved()
     {
-        By locator_saved = By.id("org.wikipedia:id/nav_tab_reading_lists");
+        By locator_saved = By.xpath("//span[text()='Watchlist']");
+        By lcoator_menu = By.id("mw-mf-main-menu-button");
 
+        WebElement menu = this.findElement(lcoator_menu, "Save button not found");
+        menu.click();
         WebElement saved = this.findElement(locator_saved, "Save button not found");
         saved.click();
     }

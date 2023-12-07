@@ -6,9 +6,7 @@ import lib.Platform;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.util.List;
-
-public class ArticleTests extends CoreTestCase {
+public class ArticleTestsWeb extends CoreTestCase {
 
     protected void setUp() throws Exception
     {
@@ -18,11 +16,6 @@ public class ArticleTests extends CoreTestCase {
 
     public void beforeTests()
     {
-        if(Platform.getInstance().isAndroid())
-        {
-            WebElement skip_button = this.MainPageObject.findElement(By.id("org.wikipedia:id/fragment_onboarding_skip_button"), "");
-            skip_button.click();
-        }
     }
 
     public void testSaveArticleToMyList() throws InterruptedException {
@@ -31,21 +24,21 @@ public class ArticleTests extends CoreTestCase {
         String list_title = "List1";
 
         //Find and save article 1
-        SearchPageObject.findAndOpenArticle(text1);
-        ArticlePageObject.saveArticleToReadingList();
+        SearchPageObjectWeb.findAndOpenArticle(text1);
+        ArticlePageObjectWeb.saveArticleToReadingList();
 
         //Find and save article 2
         MainPageObject.goHome();
-        SearchPageObject.findAndOpenArticle(text2);
-        ArticlePageObject.saveArticleToReadingList();
+        SearchPageObjectWeb.findAndOpenArticle(text2);
+        ArticlePageObjectWeb.saveArticleToReadingList();
 
         //Remove article 1
         MainPageObject.goHome();
         MainPageObject.goSaved();
-        ArticlePageObject.removeArticleFromReadingList(text1, list_title);
+        ArticlePageObjectWeb.removeArticleFromReadingList(text1, list_title);
 
         //Check if article 2 remains = Open article 2
-        ArticlePageObject.openSavedArticle(text2);
+        ArticlePageObjectWeb.openSavedArticle(text2);
 
         //Check if the article has a correct title
         WebElement article_title = MainPageObject.findElement(new MobileBy.ByAccessibilityId(text2), "");
@@ -53,6 +46,6 @@ public class ArticleTests extends CoreTestCase {
         //Remove article 2
         MainPageObject.goHome();
         MainPageObject.goSaved();
-        ArticlePageObject.removeArticleFromReadingList(text2, list_title);
+        ArticlePageObjectWeb.removeArticleFromReadingList(text2, list_title);
     }
 }

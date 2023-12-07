@@ -1,12 +1,11 @@
 package tests;
 
 import lib.CoreTestCase;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class SearchTests extends CoreTestCase {
+public class SearchTestsWeb extends CoreTestCase {
 
     protected void setUp() throws Exception
     {
@@ -17,20 +16,21 @@ public class SearchTests extends CoreTestCase {
     public void testSearch() throws InterruptedException {
         String word_to_search = "docker";
 
-        SearchPageObject.findArticle(word_to_search);
-        List<WebElement> search_results = SearchPageObject.getSearchResults();
+        SearchPageObjectWeb.findArticle(word_to_search);
+        List<WebElement> search_results = SearchPageObjectWeb.getSearchResults();
 
         assertFalse(search_results.isEmpty());
 
-        SearchPageObject.clearSearch();
-        List<WebElement> search_results_cleared = SearchPageObject.getSearchResults();
+        SearchPageObjectWeb.clearSearch();
+        List<WebElement> search_results_cleared = SearchPageObjectWeb.getSearchResults();
 
         assertTrue(search_results_cleared.isEmpty());
     }
 
     public void testSearchNoWait() throws InterruptedException {
         String text1 = "Plutonium";
-        SearchPageObject.findAndOpenArticle(text1);
+        SearchPageObjectWeb.findAndOpenArticle(text1);
+
         assertTrue(ArticlePageObject.isTitlePresent(text1));
     }
 }

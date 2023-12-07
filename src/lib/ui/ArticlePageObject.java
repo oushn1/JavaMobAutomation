@@ -1,15 +1,17 @@
 package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileDriver;
 import io.appium.java_client.TouchAction;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.List;
 
 public class ArticlePageObject extends MainPageObject{
 
-    public ArticlePageObject(AppiumDriver driver)
+    public ArticlePageObject(RemoteWebDriver driver)
     {
         super(driver);
     }
@@ -18,6 +20,7 @@ public class ArticlePageObject extends MainPageObject{
         locator_save = By.id("Save"),
         locator_save_to_list = By.id("org.wikipedia:id/snackbar_action"),
         locator_readings_lists = By.id("org.wikipedia:id/item_title_container");
+
 
     private static By getLocatorByTextBySubstring(String ss)
     {
@@ -44,17 +47,20 @@ public class ArticlePageObject extends MainPageObject{
         WebElement reading_list = this.findElement(getLocatorByTextBySubstring(list_title), "Reading list not found");
         reading_list.click();
         WebElement article = this.findElement(getLocatorByTextBySubstring(article_title), "Article not found");
-        int x = article.getLocation().getX() + 10;
-        int y = article.getLocation().getY() + 10;
 
-        TouchAction swipe = new TouchAction(driver);
-        swipe
-                .press(x+800, y)
-                .waitAction(200)
-                .moveTo(x+100, y)
-                .release()
-                .waitAction(200)
-                .perform();
+        if(driver instanceof AppiumDriver) {
+            int x = article.getLocation().getX() + 10;
+            int y = article.getLocation().getY() + 10;
+
+            TouchAction swipe = new TouchAction((AppiumDriver) driver);
+            swipe
+                    .press(x + 800, y)
+                    .waitAction(200)
+                    .moveTo(x + 100, y)
+                    .release()
+                    .waitAction(200)
+                    .perform();
+        }
     }
 
     public void openSavedArticle(String article_title)

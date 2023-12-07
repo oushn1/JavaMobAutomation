@@ -1,8 +1,10 @@
 package lib.ui;
 
 import io.appium.java_client.AppiumDriver;
+import lib.Platform;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,8 @@ public class SearchPageObject extends MainPageObject {
             locator_clear_search = By.id("org.wikipedia:id/search_close_btn"),
             locator_search_result_items = By.id("org.wikipedia:id/page_list_item_title");
 
-    public SearchPageObject(AppiumDriver driver)
+
+    public SearchPageObject(RemoteWebDriver driver)
     {
         super(driver);
     }
