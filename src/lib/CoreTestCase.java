@@ -9,13 +9,15 @@ import lib.ui.ArticlePageObjectWeb;
 import lib.ui.MainPageObject;
 import lib.ui.SearchPageObject;
 import lib.ui.SearchPageObjectWeb;
+import org.junit.After;
+import org.junit.Before;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class CoreTestCase extends TestCase {
+public class CoreTestCase {
 
     protected RemoteWebDriver driver;
 
@@ -26,9 +28,8 @@ public class CoreTestCase extends TestCase {
     public SearchPageObjectWeb SearchPageObjectWeb;
     public ArticlePageObjectWeb ArticlePageObjectWeb;
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
+    @Before
+    public void setUp() throws Exception {
         driver = Platform.getInstance().getDriver();
 
         MainPageObject = new MainPageObject(driver);
@@ -43,11 +44,10 @@ public class CoreTestCase extends TestCase {
         this.beforeTests();
     };
 
-    @Override
-    protected void tearDown() throws Exception {
+    @After
+    public void tearDown() throws Exception {
         driver.quit();
 
-        super.setUp();
     }
 
     protected void openTestWebPage()
@@ -91,5 +91,4 @@ public class CoreTestCase extends TestCase {
         catch (Exception ignored) {}
         }
     }
-
 }

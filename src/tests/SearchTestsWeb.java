@@ -1,36 +1,39 @@
 package tests;
 
 import lib.CoreTestCase;
+import org.junit.Assert;
+import org.junit.Test;
 import org.openqa.selenium.WebElement;
 import java.util.List;
 
 public class SearchTestsWeb extends CoreTestCase {
 
-    protected void setUp() throws Exception
+    public void setUp() throws Exception
     {
         super.setUp();
         this.beforeTests();
     }
 
-
+    @Test
     public void testSearch() throws InterruptedException {
         String word_to_search = "docker";
 
         SearchPageObjectWeb.findArticle(word_to_search);
         List<WebElement> search_results = SearchPageObjectWeb.getSearchResults();
 
-        assertFalse(search_results.isEmpty());
+        Assert.assertFalse(search_results.isEmpty());
 
         SearchPageObjectWeb.clearSearch();
         List<WebElement> search_results_cleared = SearchPageObjectWeb.getSearchResults();
 
-        assertTrue(search_results_cleared.isEmpty());
+        Assert.assertTrue(search_results_cleared.isEmpty());
     }
 
+    @Test
     public void testSearchNoWait() throws InterruptedException {
         String text1 = "Plutonium";
         SearchPageObjectWeb.findAndOpenArticle(text1);
 
-        assertTrue(ArticlePageObject.isTitlePresent(text1));
+        Assert.assertTrue(ArticlePageObject.isTitlePresent(text1));
     }
 }

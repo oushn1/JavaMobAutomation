@@ -4,12 +4,13 @@ import io.appium.java_client.MobileBy;
 import lib.CoreTestCase;
 import lib.Platform;
 import org.junit.Assert;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class ArticleTestsWeb extends CoreTestCase {
 
-    protected void setUp() throws Exception
+    public void setUp() throws Exception
     {
         super.setUp();
         this.beforeTests();
@@ -19,6 +20,7 @@ public class ArticleTestsWeb extends CoreTestCase {
     {
     }
 
+    @Test
     public void testSaveArticleToMyList() throws InterruptedException {
         String text1 = "Plutonium";
         String text2 = "Uranium";
