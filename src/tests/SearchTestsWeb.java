@@ -2,7 +2,6 @@ package tests;
 
 import lib.CoreTestCase;
 import org.openqa.selenium.WebElement;
-
 import java.util.List;
 
 public class SearchTestsWeb extends CoreTestCase {
@@ -12,6 +11,7 @@ public class SearchTestsWeb extends CoreTestCase {
         super.setUp();
         this.beforeTests();
     }
+
 
     public void testSearch() throws InterruptedException {
         String word_to_search = "docker";
