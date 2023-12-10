@@ -11,6 +11,7 @@ import java.util.List;
 
 public class ArticleTests extends CoreTestCase {
 
+    @Before
     public void setUp() throws Exception
     {
         super.setUp();
@@ -27,6 +28,7 @@ public class ArticleTests extends CoreTestCase {
     }
 
     @Test
+    @DisplayName("Save an article to my list")
     public void testSaveArticleToMyList() throws InterruptedException {
         String text1 = "Plutonium";
         String text2 = "Uranium";

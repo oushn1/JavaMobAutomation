@@ -22,6 +22,7 @@ public class SearchPageObjectWeb extends MainPageObject {
         super(driver);
     }
 
+    @Step("Find an article")
     public void findArticle(String title) throws InterruptedException {
         WebElement search = this.findElement(locator_search, "No search field found");
         search.click();
@@ -29,6 +30,7 @@ public class SearchPageObjectWeb extends MainPageObject {
         search_input.get(3).sendKeys(title);
     }
 
+    @Step("Find and open an article")
     public void findAndOpenArticle(String title) throws InterruptedException {
         WebElement search = this.findElement(locator_search, "No search field found");
         search.click();
@@ -46,6 +48,7 @@ public class SearchPageObjectWeb extends MainPageObject {
         return search_results;
     }
 
+    @Step("Clear the search field")
     public void clearSearch() throws InterruptedException {
         WebElement clear_button = this.findElement(locator_clear_button,"Clear button not found");
         clear_button.click();

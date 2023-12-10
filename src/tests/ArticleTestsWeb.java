@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 
 public class ArticleTestsWeb extends CoreTestCase {
 
+    @Before
     public void setUp() throws Exception
     {
         super.setUp();
@@ -21,6 +22,7 @@ public class ArticleTestsWeb extends CoreTestCase {
     }
 
     @Test
+    @DisplayName("Save an article to my list")
     public void testSaveArticleToMyList() throws InterruptedException {
         String text1 = "Plutonium";
         String text2 = "Uranium";

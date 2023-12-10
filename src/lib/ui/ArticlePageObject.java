@@ -32,6 +32,7 @@ public class ArticlePageObject extends MainPageObject{
         return By.name(substring);
     }
 
+    @Step("Save an article to the reading list")
     public void saveArticleToReadingList()
     {
         WebElement save = this.findElement(locator_save, "Save button not found");
@@ -42,6 +43,7 @@ public class ArticlePageObject extends MainPageObject{
         lists.get(0).click();
     }
 
+    @Step("Remove an article from the reading list")
     public void removeArticleFromReadingList(String article_title, String list_title)
     {
         WebElement reading_list = this.findElement(getLocatorByTextBySubstring(list_title), "Reading list not found");
@@ -63,6 +65,7 @@ public class ArticlePageObject extends MainPageObject{
         }
     }
 
+    @Step("Open a saved article")
     public void openSavedArticle(String article_title)
     {
         WebElement article = this.findElement(getLocatorByTextBySubstring(article_title), "Article not found");

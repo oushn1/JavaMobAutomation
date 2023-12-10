@@ -23,6 +23,7 @@ public class SearchPageObject extends MainPageObject {
         super(driver);
     }
 
+    @Step("Find an article")
     public void findArticle(String title)
     {
         WebElement search = this.findElement(locator_search, "No search field found");
@@ -30,6 +31,7 @@ public class SearchPageObject extends MainPageObject {
         search.sendKeys(title);
     }
 
+    @Step("Find and open an article")
     public void findAndOpenArticle(String title)
     {
         WebElement search = this.findElement(locator_search, "No search field found");
@@ -47,6 +49,7 @@ public class SearchPageObject extends MainPageObject {
         return search_results;
     }
 
+    @Step("Clear the search field")
     public void clearSearch()
     {
         WebElement clear_button = this.findElement(locator_clear_search,"");

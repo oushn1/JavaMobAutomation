@@ -8,6 +8,7 @@ import java.util.List;
 
 public class SearchTestsWeb extends CoreTestCase {
 
+    @Before
     public void setUp() throws Exception
     {
         super.setUp();
@@ -15,6 +16,7 @@ public class SearchTestsWeb extends CoreTestCase {
     }
 
     @Test
+    @DisplayName("Search an article")
     public void testSearch() throws InterruptedException {
         String word_to_search = "docker";
 
@@ -30,6 +32,7 @@ public class SearchTestsWeb extends CoreTestCase {
     }
 
     @Test
+    @DisplayName("Search an article with no wait")
     public void testSearchNoWait() throws InterruptedException {
         String text1 = "Plutonium";
         SearchPageObjectWeb.findAndOpenArticle(text1);
